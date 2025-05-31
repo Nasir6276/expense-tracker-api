@@ -9,22 +9,16 @@ dotenv.config();
 
 const app = express();
 
-// if (process.env.NODE_ENV === "production") job.start();
+if (process.env.NODE_ENV === "production") job.start();
 
 app.use(ratelimiter);
 app.use(express.json());
 
-// app.use((req, res, next) => {
-//   console.log("hey we hit a req method, request method is:", req.method);
-
-//   next();
-// });
-
 const PORT = process.env.PORT;
 
-// app.get("/api/health", (req, res) => {
-//   res.status(200).json({ status: "ok" });
-// });
+app.get("/api/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
 
 app.use("/api/transactions", transactionsRoute);
 
